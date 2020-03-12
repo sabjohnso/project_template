@@ -1,0 +1,40 @@
+cmake_minimum_required(VERSION 3.12)
+
+project(@NAME@ VERSION 0.1.0 LANGUAGES C CXX)
+
+option(@NAME@_BUILD_TESTING "Build the @NAME@ tests" ON)
+
+include(GNUInstallDirs)
+set(@NAME@_INSTALL_BINDIR ${CMAKE_INSTALL_BINDIR})
+set(@NAME@_INSTALL_LIBDIR ${CMAKE_INSTALL_LIBDIR})
+set(@NAME@_INSTALL_INCLUDEDIR ${CMAKE_INSTALL_INCLUDEDIR})
+set(@NAME@_INSTALL_CONFDIR ${@NAME@_INSTALL_LIBDIR}/cmake/@NAME@-${PROJECT_VERSION})
+
+list(INSERT CMAKE_MODULE_PATH 0 ${PROJECT_SOURCE_DIR}/cmake)
+include(@NAME@_deps)
+
+add_subdirectory(@NAME@)
+
+if(@NAME@_BUILD_TESTING)
+  include(CTest)
+  if(BUILD_TESTING)
+    add_subdirectory(@NAME@_testing)
+  endif()
+endif()
+
+install(EXPORT @NAME@_EXPORTS
+  NAMESPACE @NAME@::
+  FILE @NAME@-exports.cmake
+  DESTINATION ${@NAME@_INSTALL_CONFDIR})
+
+configure_file(@NAME@-config.cmake.in @NAME@-config.cmake)
+install(FILES ${PROJECT_BINARY_DIR}/@NAME@-config.cmake
+  DESTINATION ${@NAME@_INSTALL_CONFDIR})
+
+
+
+
+
+
+
+
