@@ -1,15 +1,16 @@
 configure_file(config.hpp.in config.hpp)
 
-add_library(@NAME@ INTERFACE)
-target_include_directories(@NAME@
+add_library(@NAME@_header INTERFACE)
+set_target_properties(@NAME@_header PROPERTIES EXPORT_NAME header)
+target_include_directories(@NAME@_header
   INTERFACE
   $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}>
   $<BUILD_INTERFACE:${PROJECT_BINARY_DIR}>
   $<INSTALL_INTERFACE:${@NAME@_INSTALL_INCLUDEDIR}>)
 
-add_library(@NAME@::@NAME@ ALIAS @NAME@)
+add_library(@NAME@::header ALIAS @NAME@_header)
   
-install(TARGETS @NAME@
+install(TARGETS @NAME@_header
   EXPORT @NAME@_EXPORTS
   RUNTIME DESTINATION ${@NAME@_INSTALL_BINDIR}
   LIBRARY DESTINATION ${@NAME@_INSTALL_LIBDIR}
@@ -17,4 +18,4 @@ install(TARGETS @NAME@
 
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/config.hpp
-  DESTINATION ${@NAME@_INSTALL_INCLUDEDIR})
+  DESTINATION ${@NAME@_INSTALL_INCLUDEDIR}/@NAME@)

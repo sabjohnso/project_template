@@ -20,7 +20,7 @@ configure_file(${TEMPLATE_DIR}/TopLevel.cmake.in ${OUTPUT_DIR}/CMakeLists.txt @O
 configure_file(${TEMPLATE_DIR}/Source.cmake.in ${SOURCE_DIR}/CMakeLists.txt @ONLY)
 configure_file(${TEMPLATE_DIR}/Testing.cmake.in ${TESTING_DIR}/CMakeLists.txt @ONLY)
 configure_file(${TEMPLATE_DIR}/config.hpp.in.in ${SOURCE_DIR}/config.hpp.in @ONLY)
-configure_file(${TEMPLATE_DIR}/Config.cmake.in.in ${OUTPUT_DIR}/${NAME}-config.cmake.in)
+configure_file(${TEMPLATE_DIR}/Config.cmake.in.in ${OUTPUT_DIR}/${NAME}-config.cmake.in @ONLY)
 configure_file(${TEMPLATE_DIR}/Dependencies.cmake.in ${OUTPUT_DIR}/cmake/${NAME}_deps.cmake COPYONLY)
 
 execute_process(
