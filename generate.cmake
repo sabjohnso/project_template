@@ -11,9 +11,10 @@ set(OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR})
 get_filename_component(NAME ${OUTPUT_DIR} NAME)
 set(SOURCE_DIR ${OUTPUT_DIR}/${NAME})
 set(TESTING_DIR ${OUTPUT_DIR}/${NAME}_testing)
+set(SCRIPTS_DIR ${OUTPUT_DIR}/scripts)
 
 
-file(MAKE_DIRECTORY ${SOURCE_DIR} ${TESTING_DIR} ${OUTPUT_DIR}/cmake)
+file(MAKE_DIRECTORY ${SOURCE_DIR} ${TESTING_DIR} ${OUTPUT_DIR}/cmake ${SCRIPTS_DIR})
 
 configure_file(${TEMPLATE_DIR}/gitignore.in ${OUTPUT_DIR}/.gitignore COPYONLY)
 configure_file(${TEMPLATE_DIR}/TopLevel.cmake.in ${OUTPUT_DIR}/CMakeLists.txt @ONLY)
@@ -22,6 +23,9 @@ configure_file(${TEMPLATE_DIR}/Testing.cmake.in ${TESTING_DIR}/CMakeLists.txt @O
 configure_file(${TEMPLATE_DIR}/config.hpp.in.in ${SOURCE_DIR}/config.hpp.in @ONLY)
 configure_file(${TEMPLATE_DIR}/Config.cmake.in.in ${OUTPUT_DIR}/${NAME}-config.cmake.in @ONLY)
 configure_file(${TEMPLATE_DIR}/Dependencies.cmake.in ${OUTPUT_DIR}/cmake/${NAME}_deps.cmake COPYONLY)
+configure_file(${TEMPLATE_DIR}/check-format.sh.in ${SCRIPTS_DIR}/check-format.sh @ONLY)
+configure_file(${TEMPLATE_DIR}/format.sh.in ${SCRIPTS_DIR}/check-format.sh @ONLY)
+
 
 execute_process(
   COMMAND ${GIT_EXECUTABLE} init
@@ -46,7 +50,3 @@ execute_process(
 execute_process(
   COMMAND ${GIT_EXECUTABLE} commit -m "Added cmake boostrap submodule"
   WORKING_DIRECTORY ${OUTPUT_DIR})
-
-
-
-
