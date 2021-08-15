@@ -4,7 +4,6 @@ find_package(Git REQUIRED)
 
 set(CMAKE_BOOTSTRAP_URL https://github.com/sabjohnso/cmake_utilities_boostrap.git)
 
-
 get_filename_component(TEMPLATE_DIR ${CMAKE_SCRIPT_MODE_FILE} DIRECTORY)
 
 set(OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR})
@@ -12,7 +11,6 @@ get_filename_component(NAME ${OUTPUT_DIR} NAME)
 set(SOURCE_DIR ${OUTPUT_DIR}/${NAME})
 set(TESTING_DIR ${OUTPUT_DIR}/${NAME}_testing)
 set(SCRIPTS_DIR ${OUTPUT_DIR}/scripts)
-
 
 file(MAKE_DIRECTORY ${SOURCE_DIR} ${TESTING_DIR} ${OUTPUT_DIR}/cmake ${SCRIPTS_DIR})
 
@@ -25,7 +23,8 @@ configure_file(${TEMPLATE_DIR}/Config.cmake.in.in ${OUTPUT_DIR}/${NAME}-config.c
 configure_file(${TEMPLATE_DIR}/Dependencies.cmake.in ${OUTPUT_DIR}/cmake/${NAME}_deps.cmake COPYONLY)
 configure_file(${TEMPLATE_DIR}/check-format.sh.in ${SCRIPTS_DIR}/check-format.sh @ONLY)
 configure_file(${TEMPLATE_DIR}/format.sh.in ${SCRIPTS_DIR}/check-format.sh @ONLY)
-
+configure_file(${TEMPLATE_DIR}/initial-cache.cmake.in ${OUTPUT_DIR}/initial-cache.cmake @ONLY)
+configure_file(${TEMPLATE_DIR}/sanitizing-cache.cmake.in ${OUTPUT_DIR}/sanitizing-cache.cmake @ONLY)
 
 execute_process(
   COMMAND ${GIT_EXECUTABLE} init
