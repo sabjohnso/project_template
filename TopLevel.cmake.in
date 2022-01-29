@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.12)
 project(@NAME@ VERSION 0.1.0 LANGUAGES C CXX)
 
 option(@NAME@_BUILD_TESTING "Build the @NAME@ tests" ON)
+set(@NAME@_CXX_STANDARD 20 "C++ standard for @NAME@" ON)
 
 include(GNUInstallDirs)
 set(@NAME@_INSTALL_BINDIR ${CMAKE_INSTALL_BINDIR})
@@ -30,11 +31,3 @@ install(EXPORT @NAME@_EXPORTS
 configure_file(@NAME@-config.cmake.in @NAME@-config.cmake)
 install(FILES ${PROJECT_BINARY_DIR}/@NAME@-config.cmake
   DESTINATION ${@NAME@_INSTALL_CONFDIR})
-
-
-
-
-
-
-
-
