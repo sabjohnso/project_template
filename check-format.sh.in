@@ -4,7 +4,7 @@ set -eu
 readonly scriptpath=$0;
 readonly scriptdir=$(dirname $0)
 readonly srcdir=$scriptdir/../@NAME@
-readonly testdir=$scriptdir/../@NAME@
+readonly testdir=$scriptdir/../@NAME@_testing
 
 badfile_count=0
 
