@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.12)
 project(@NAME@ VERSION 0.1.0 LANGUAGES C CXX)
 
 option(@NAME@_BUILD_TESTING "Build the @NAME@ tests" ON)
-set(@NAME@_CXX_STANDARD 20 "C++ standard for @NAME@" ON)
+set(@NAME@_CXX_STANDARD 20 CACHE STRING "C++ standard for @NAME@")
 
 include(GNUInstallDirs)
 set(@NAME@_INSTALL_BINDIR ${CMAKE_INSTALL_BINDIR})
