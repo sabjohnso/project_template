@@ -26,6 +26,7 @@ configure_file(${TEMPLATE_DIR}/format.sh.in ${SCRIPTS_DIR}/check-format.sh @ONLY
 configure_file(${TEMPLATE_DIR}/initial-cache.cmake.in ${OUTPUT_DIR}/initial-cache.cmake @ONLY)
 configure_file(${TEMPLATE_DIR}/sanitizing-cache.cmake.in ${OUTPUT_DIR}/sanitizing-cache.cmake @ONLY)
 configure_file(${TEMPLATE_DIR}/.clang-format ${OUTPUT_DIR}/.clang-format)
+configure_file(${TEMPLATE_DIR}/CMakePresets.json ${OUTPUT_DIR}/CMakePresets.json @ONLY)
 
 execute_process(
   COMMAND ${GIT_EXECUTABLE} init
