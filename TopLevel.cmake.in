@@ -14,12 +14,12 @@ set(@NAME@_INSTALL_CONFDIR ${@NAME@_INSTALL_LIBDIR}/cmake/@NAME@-${PROJECT_VERSI
 list(INSERT CMAKE_MODULE_PATH 0 ${PROJECT_SOURCE_DIR}/cmake)
 include(@NAME@_deps)
 
-add_subdirectory(@NAME@)
+add_subdirectory(src)
 
 if(@NAME@_BUILD_TESTING)
   include(CTest)
   if(BUILD_TESTING)
-    add_subdirectory(@NAME@_testing)
+    add_subdirectory(test)
   endif()
 endif()
 

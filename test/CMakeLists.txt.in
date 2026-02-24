@@ -12,3 +12,6 @@ macro(@NAME@_add_test test_name)
     CXX_STANDARD ${@NAME@_CXX_STANDARD})
   add_test(${test_name} ${exe_name})
 endmacro()
+
+add_subdirectory(unit)
+add_subdirectory(feature)

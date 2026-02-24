@@ -38,7 +38,7 @@
 	},
         {
             "name": "sanitary",
-            "inherit" : "multi",
+            "inherits" : "default",
             "cacheVariables" : {
                 "CMAKE_CXX_FLAGS" : {
                     "type" : "STRING",
@@ -46,7 +46,7 @@
                 },
                 "CMAKE_CXX_FLAGS_RELEASE" : {
                     "type" : "STRING",
-                    "type" : "-g -O3"
+                    "value" : "-g -O3"
                 }
             }
         }
@@ -55,12 +55,23 @@
 	{
 	    "name" : "default",
 	    "configurePreset" : "default"
+	},
+        {
+	    "name" : "sanitary",
+	    "configurePreset" : "sanitary"
 	}
     ],
     "testPresets" : [
 	{
 	    "name": "default",
 	    "configurePreset" : "default",
+	    "output" : {
+		"outputOnFailure" : true
+	    }
+	},
+        {
+	    "name": "sanitary",
+	    "configurePreset" : "sanitary",
 	    "output" : {
 		"outputOnFailure" : true
 	    }
