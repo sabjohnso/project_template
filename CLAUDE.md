@@ -60,9 +60,8 @@ ctest --preset default
 │   └── feature/
 │       └── CMakeLists.txt              (empty placeholder)
 ├── cmake/{NAME}_deps.cmake
-├── scripts/check-format.sh
-├── scripts/format.sh
 ├── .clang-format
+├── .pre-commit-config.yaml
 ├── .gitignore
 ├── CMakePresets.json
 ├── initial-cache.cmake
@@ -90,8 +89,7 @@ Each `.in` file maps to a file in the generated project via `configure_file()` i
 | `Config.cmake.in.in` | `{NAME}-config.cmake.in` | CMake package config for consumers |
 | `initial-cache.cmake.in` | `initial-cache.cmake` | Default cache variables |
 | `sanitizing-cache.cmake.in` | `sanitizing-cache.cmake` | Sanitizer build settings |
-| `scripts/check-format.sh.in` | `scripts/check-format.sh` | Clang-format violation checker |
-| `scripts/format.sh.in` | `scripts/format.sh` | Auto-formatter |
+| `.pre-commit-config.yaml` | `.pre-commit-config.yaml` | Pre-commit hooks for clang-format |
 
 ### Key Design Decisions
 

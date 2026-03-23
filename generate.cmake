@@ -8,16 +8,13 @@ get_filename_component(TEMPLATE_DIR ${CMAKE_SCRIPT_MODE_FILE} DIRECTORY)
 
 set(OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR})
 get_filename_component(NAME ${OUTPUT_DIR} NAME)
-set(SCRIPTS_DIR ${OUTPUT_DIR}/scripts)
-
 file(MAKE_DIRECTORY
   ${OUTPUT_DIR}/src/include/${NAME}
   ${OUTPUT_DIR}/src/lib
   ${OUTPUT_DIR}/src/bin
   ${OUTPUT_DIR}/test/unit
   ${OUTPUT_DIR}/test/feature
-  ${OUTPUT_DIR}/cmake
-  ${SCRIPTS_DIR})
+  ${OUTPUT_DIR}/cmake)
 
 configure_file(${TEMPLATE_DIR}/gitignore.in ${OUTPUT_DIR}/.gitignore COPYONLY)
 configure_file(${TEMPLATE_DIR}/TopLevel.cmake.in ${OUTPUT_DIR}/CMakeLists.txt @ONLY)
@@ -32,8 +29,7 @@ configure_file(${TEMPLATE_DIR}/test/unit/CMakeLists.txt.in ${OUTPUT_DIR}/test/un
 configure_file(${TEMPLATE_DIR}/test/feature/CMakeLists.txt.in ${OUTPUT_DIR}/test/feature/CMakeLists.txt @ONLY)
 configure_file(${TEMPLATE_DIR}/Config.cmake.in.in ${OUTPUT_DIR}/${NAME}-config.cmake.in @ONLY)
 configure_file(${TEMPLATE_DIR}/Dependencies.cmake.in ${OUTPUT_DIR}/cmake/${NAME}_deps.cmake COPYONLY)
-configure_file(${TEMPLATE_DIR}/scripts/check-format.sh.in ${SCRIPTS_DIR}/check-format.sh @ONLY)
-configure_file(${TEMPLATE_DIR}/scripts/format.sh.in ${SCRIPTS_DIR}/format.sh @ONLY)
+configure_file(${TEMPLATE_DIR}/.pre-commit-config.yaml ${OUTPUT_DIR}/.pre-commit-config.yaml COPYONLY)
 configure_file(${TEMPLATE_DIR}/initial-cache.cmake.in ${OUTPUT_DIR}/initial-cache.cmake @ONLY)
 configure_file(${TEMPLATE_DIR}/sanitizing-cache.cmake.in ${OUTPUT_DIR}/sanitizing-cache.cmake @ONLY)
 configure_file(${TEMPLATE_DIR}/.clang-format ${OUTPUT_DIR}/.clang-format)
@@ -41,6 +37,10 @@ configure_file(${TEMPLATE_DIR}/CMakePresets.json ${OUTPUT_DIR}/CMakePresets.json
 
 execute_process(
   COMMAND ${GIT_EXECUTABLE} init
+  WORKING_DIRECTORY ${OUTPUT_DIR})
+
+execute_process(
+  COMMAND pre-commit install
   WORKING_DIRECTORY ${OUTPUT_DIR})
 
 execute_process(
