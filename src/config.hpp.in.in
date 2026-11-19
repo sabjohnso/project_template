@@ -3,7 +3,7 @@
 namespace @NAME@::Config
 {
   struct Info {
-    static constexpr char name[] = ${PROJECT_NAME};
+    static constexpr char name[] = "${PROJECT_NAME}";
     struct Version {
       static constexpr int major = ${PROJECT_VERSION_MAJOR};
       static constexpr int minor = ${PROJECT_VERSION_MINOR};
@@ -26,7 +26,7 @@ namespace @NAME@::Config
         static constexpr char cmake_cxx_flags_debug [] = "${CMAKE_CXX_FLAGS_DEBUG}";
         static constexpr char cmake_cxx_flags_relwithdebinfo [] = "${CMAKE_CXX_FLAGS_RELWITHDEBINFO}";
         static constexpr char cmake_cxx_flags_minsizerel [] = "${CMAKE_CXX_FLAGS_MINSIZEREL}";
-      }
+      };
     };
   };
 } // end of namespace @NAME@::Config

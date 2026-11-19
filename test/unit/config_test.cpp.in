@@ -1,0 +1,19 @@
+//
+// ... Testing header files
+//
+#include <catch2/catch_test_macros.hpp>
+
+//
+// ... @NAME@ header files
+//
+#include <@NAME@/config.hpp>
+
+#include <string_view>
+
+namespace @NAME@::testing {
+
+  TEST_CASE("The configuration has the project name") {
+    CHECK(std::string_view{Config::Info::name} == "@NAME@");
+  }
+
+} // end of namespace @NAME@::testing
